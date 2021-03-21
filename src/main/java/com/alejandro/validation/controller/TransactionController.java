@@ -24,9 +24,18 @@ public class TransactionController {
 	private TransactionService service;
 	
 	@PostMapping()
-	public ResponseEntity<Transaction>createJavax(@Valid @RequestBody Transaction t) {
+	public ResponseEntity<Transaction>create(@Valid @RequestBody Transaction t) {
 		try {
 			return ResponseEntity.ok(this.service.create(t));
+		} catch (NoLocalizationException e) {
+			return ResponseEntity.badRequest().header("error", e.getMessage()).build();
+		}
+	}
+	
+	@PostMapping(path = "/test")
+	public ResponseEntity<Transaction>create2(@Valid @RequestBody Transaction t) {
+		try {
+			return ResponseEntity.ok(this.service.create2(t));
 		} catch (NoLocalizationException e) {
 			return ResponseEntity.badRequest().header("error", e.getMessage()).build();
 		}

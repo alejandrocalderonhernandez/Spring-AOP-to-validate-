@@ -7,6 +7,7 @@ import com.alejandro.validation.entity.Transaction;
 public interface TransactionService {
 	
 	public Transaction create(Transaction t);
+	public Transaction create2(Transaction t);
 	public Set<Transaction> getAll();
 
 }

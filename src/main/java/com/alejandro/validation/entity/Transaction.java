@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.alejandro.validation.annotation.Iva;
 import com.google.gson.Gson;
 
 @Entity
@@ -20,7 +21,8 @@ public class Transaction implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	private Float ammount;
+	@Iva(value = 0.15)
+	private Double ammount;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "idLocation")
 	private Location location;
@@ -35,12 +37,11 @@ public class Transaction implements Serializable {
 		this.id = id;
 	}
 
-
-	public Float getAmmount() {
+	public Double getAmmount() {
 		return ammount;
 	}
 
-	public void setAmmount(Float ammount) {
+	public void setAmmount(Double ammount) {
 		this.ammount = ammount;
 	}
 
